@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import SearchIcon from '@material-ui/icons/Search';
+import ChatListItem from './components/ChatListItem/ChatListItem';
 
 
 const App = () => {
+
+  const [chatlist, setChatList] = useState([{},{},{},{}]);
+
   return (
     <div className="app-window">
       <div className="sidebar">
@@ -29,10 +34,19 @@ const App = () => {
         </header>
 
         <div className="search">
-
+          <div className="search-input">
+            <SearchIcon font-size="samll"  style={{color:'#919191'}}/>
+            {/* type="search" => x no campo preenchido */}
+            <input type="search" placeholder="Procurar"/>
+          </div>
         </div>
-        <div className="chatlist">
 
+        <div className="chatlist">
+          {chatlist.map((item, key) => (
+            <ChatListItem
+              key={key}
+            />
+          ))}
         </div>
       </div>
       <div clasName="contetarea">
