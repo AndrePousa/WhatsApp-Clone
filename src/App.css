@@ -75,6 +75,23 @@ header{
     margin-left: 10px; /*descola do icone */
 }
 
+.chatlist{
+    flex:1;
+    background-color: #fff;
+    overflow-y:auto;
+}
+
+/*alteração na barra de rolagem */
+.chatlist::-webkit-scrollbar{
+    width:6px;
+    height:6px;  
+}
+
+/* barrinha de rolagem*/
+.chatlist::-webkit-scrollbar-thumb{
+    background-color:rgba(0,0,0,0.2);
+}
+
 .contentarea{
 
 }
