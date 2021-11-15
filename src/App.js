@@ -5,11 +5,19 @@ import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import ChatListItem from './components/ChatListItem/ChatListItem';
+import ChatIntro from './components/ChatIntro/ChatIntro';
+import ChatWindow from './components/ChatWindow/ChatWindow';
 
 
 const App = () => {
 
-  const [chatlist, setChatList] = useState([{},{},{},{},{},{},{},{},{},{},{},{}]);
+  const [chatlist, setChatList] = useState([
+    {chatId:1, title:'fulano', image:'https://previews.123rf.com/images/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg'},
+    {chatId:2, title:'fulano', image:'https://previews.123rf.com/images/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg'},
+    {chatId:3, title:'fulano', image:'https://previews.123rf.com/images/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg'},
+    {chatId:4, title:'fulano', image:'https://previews.123rf.com/images/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg'}
+  ]);
+  const [activeChat, setActiveChat] = useState({});
 
   return (
     <div className="app-window">
@@ -45,12 +53,21 @@ const App = () => {
           {chatlist.map((item, key) => (
             <ChatListItem
               key={key}
+              data={item}
+              active={activeChat.chatId === chatlist[key].chatId}
+              onClick={()=>setActiveChat(chatlist[key])}
             />
           ))}
         </div>
       </div>
-      <div clasName="contetarea">
-
+      <div className="contentarea">
+        {activeChat.chatId !== undefined && 
+          <ChatWindow/>
+        }
+        {activeChat.chatId === undefined &&
+          <ChatIntro/>
+        }
+       
       </div>
     </div>
   );
