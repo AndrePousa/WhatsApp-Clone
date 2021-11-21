@@ -8,6 +8,7 @@ import ChatListItem from './components/ChatListItem/ChatListItem';
 import ChatIntro from './components/ChatIntro/ChatIntro';
 import ChatWindow from './components/ChatWindow/ChatWindow';
 import NewChat from './components/NewChat/NewChat';
+import Login from './components/Login/Login';
 
 
 const App = () => {
@@ -19,16 +20,25 @@ const App = () => {
     {chatId:4, title:'fulano', image:'https://previews.123rf.com/images/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg'}
   ]);
   const [activeChat, setActiveChat] = useState({});
-  const [user, setUser] = useState({
-    id:1234,
-    avatar:'https://previews.123rf.com/images/kritchanut/kritchanut1401/kritchanut140100054/25251050-businessman-avatar-profile-picture.jpg',
-    name:'Andrei Mateus'
-  });
-
+  const [user, setUser] = useState(null);
   const[showNewChat, setShowNewChat] = useState(false);
 
   const handleNewChat = () =>{
     setShowNewChat(true);
+  }
+
+  const handleLoginData = async (u) =>{
+    let newUser = {
+      id: u.uid,
+      name: u.displayName,
+      avatar:u.photoURL
+    };
+
+    setUser(newUser);
+  }
+
+  if(user === null){
+    return(<Login onReceive={handleLoginData}/>)
   }
 
   return (
